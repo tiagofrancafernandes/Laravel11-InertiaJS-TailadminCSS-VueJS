@@ -13,6 +13,9 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import { Link } from '@inertiajs/vue3';
 import VueApexCharts from 'vue3-apexcharts'
 import AppExtra from '@/extra/plugins/AppExtra';
+import * as StringHelpers from '@/Libs/Helpers/StringHelpers';
+
+globalThis.StringHelpers = StringHelpers;
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

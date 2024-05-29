@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import BreadcrumbDefault from '@/Components/Breadcrumbs/BreadcrumbDefault.vue'
 import AlertWarning from '@/Components/Alerts/AlertWarning.vue'
 import AlertSuccess from '@/Components/Alerts/AlertSuccess.vue'
 import AlertError from '@/Components/Alerts/AlertError.vue'
@@ -12,7 +11,7 @@ const pageTitle = ref('Alerts')
 
 <template>
   <TailAdminLayout>
-    <!-- Breadcrumb Start -->
+    <! -->
     <BreadcrumbDefault :pageTitle="pageTitle" />
     <!-- Breadcrumb End -->
 

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import * as StringHelpers from '@/Libs/Helpers/StringHelpers';
 import HeaderArea from '@/Components/Header/HeaderArea.vue';
 import Breadcrumb from '@/Components/Header/Breadcrumb.vue';
 import SidebarArea from '@/Components/Sidebar/SidebarArea.vue';
-import { computed, defineProps } from "vue";
+import { computed } from "vue";
+import { Head } from '@inertiajs/vue3';
 
 const props = defineProps({
     breadcrumbItems: {
@@ -11,10 +13,32 @@ const props = defineProps({
     hideBreadcrumb: {
         type: Boolean,
         default: false,
-    }
+    },
+    pageTitle: {
+        type: String,
+        default: null,
+    },
+    hidePageTitle: {
+        type: Boolean,
+        default: false,
+    },
+    pageSubtitle: {
+        type: String,
+        default: null,
+    },
 });
 
-const hideBreadcrumb = computed(() =>  props.hideBreadcrumb);
+const pageTitle = computed(() => {
+    return props.pageTitle || StringHelpers.toTitle((new URL(location.href)).pathname);
+});
+
+const pageSubtitle = computed(() => {
+    // (new URL(location.href)).pathname
+    return props.pageSubtitle || '';
+});
+
+const hideBreadcrumb = computed(() => props.hideBreadcrumb);
+const hidePageTitle = computed(() => Boolean(props.hidePageTitle));
 
 const breadcrumbItems = computed(() => props.breadcrumbItems || [
     // {
@@ -60,6 +84,8 @@ console.log('breadcrumbItems', breadcrumbItems.value);
 </script>
 
 <template>
+    <Head :title="pageTitle" />
+
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden">
         <!-- ===== Sidebar Start ===== -->
@@ -78,16 +104,35 @@ console.log('breadcrumbItems', breadcrumbItems.value);
                     :items="breadcrumbItems"
                 />
 
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" if="$slots.header">
+                <div
+                    class="max-w-full mx-auto px-4 sm:px-6 lg:px-8"
+                    :class="{
+                        'py-6': pageTitle,
+                        'py-8': !pageTitle,
+                    }"
+                    v-if="$slots.header"
+                >
                     <slot name="header" />
                 </div>
+                <template v-else>
+                    <div
+                        class="max-w-full mx-auto px-4 sm:px-6 lg:px-8"
+                        :class="{
+                            'py-6': pageTitle,
+                            'py-12': !pageTitle,
+                        }"
+                    >
+                        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight" v-text="pageTitle"></h2>
+                        <h4 class=" leading-tight" v-text="pageSubtitle"></h4>
+                    </div>
+                </template>
             </div>
 
             <!-- ===== Header End ===== -->
 
             <!-- ===== Main Content Start ===== -->
             <main>
-            <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+            <div class="mx-auto max-w-screen-7xl p-4 md:p-6 2xl:p-10">
                 <slot></slot>
             </div>
             </main>

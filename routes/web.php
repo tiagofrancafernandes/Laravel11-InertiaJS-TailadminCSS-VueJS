@@ -21,20 +21,25 @@ Route::get('/tailadmin/{path}', function (string $path) {
     $file = str($path)?->replace('//', '/')?->ltrim('/\\')?->rtrim('/\\')?->afterLast('/')?->append('View')?->studly();
 
     $newPath = str(substr_count($path, '/') ? $path : '')
-        ?->ltrim('/\\')
-        ?->rtrim('/\\')
-        ?->beforeLast('/')
-        ?->append('/' . $file)
-        ?->prepend('tailadmin/')
-        ?->replace('//', '/')
-        ?->toString();
+            ?->ltrim('/\\')
+            ?->rtrim('/\\')
+            ?->beforeLast('/')
+            ?->append('/' . $file)
+            ?->replace('//', '/')
+            ?->toString();
+
+    $newPath = str(
+        implode('/', array_map(fn ($item) => str($item)->studly(), explode('/', $newPath)))
+    )
+            ?->prepend('tailadmin/')
+            ?->replace('//', '/')
+            ?->toString();
 
     return Inertia::render($newPath, [
         'path' => $path,
         'newPath' => $newPath,
     ]);
-})?->where('path', '.*')
-?->name('tailadmin_view');
+})?->where('path', '.*')?->name('tailadmin_view');
 
 Route::get('/tables', function () {
     return Inertia::render('tailadmin/TablesView', [

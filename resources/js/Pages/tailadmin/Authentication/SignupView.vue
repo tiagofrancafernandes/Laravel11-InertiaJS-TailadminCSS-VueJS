@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import DefaultAuthCard from '@/Components/Auths/DefaultAuthCard.vue'
 import InputGroup from '@/Components/Auths/InputGroup.vue'
-import BreadcrumbDefault from '@/Components/Breadcrumbs/BreadcrumbDefault.vue'
 import TailAdminLayout from '@/Layouts/TailAdminLayout.vue'
 
 import { ref } from 'vue'
@@ -11,7 +10,7 @@ const pageTitle = ref('Sign Up')
 
 <template>
   <TailAdminLayout>
-    <!-- Breadcrumb Start -->
+    <! -->
     <BreadcrumbDefault :pageTitle="pageTitle" />
     <!-- Breadcrumb End -->
 

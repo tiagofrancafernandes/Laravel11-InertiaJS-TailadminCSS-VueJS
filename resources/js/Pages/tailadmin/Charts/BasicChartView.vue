@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import BreadcrumbDefault from '@/Components/Breadcrumbs/BreadcrumbDefault.vue'
 import ChartOne from '@/Components/Charts/ChartOne.vue'
 import ChartThree from '@/Components/Charts/ChartThree.vue'
 import ChartTwo from '@/Components/Charts/ChartTwo.vue'
@@ -12,7 +11,7 @@ const pageTitle = ref('Basic Chart')
 
 <template>
   <TailAdminLayout>
-    <!-- Breadcrumb Start -->
+    <! -->
     <BreadcrumbDefault :pageTitle="pageTitle" />
     <!-- Breadcrumb End -->
 
