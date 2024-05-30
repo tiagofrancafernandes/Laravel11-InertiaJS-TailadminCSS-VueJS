@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!-- BEGIN resources/views/app.blade.php -->
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,4 +19,5 @@
     <body class="font-sans antialiased">
         @inertia
     </body>
+<!-- END resources/views/app.blade.php -->
 </html>

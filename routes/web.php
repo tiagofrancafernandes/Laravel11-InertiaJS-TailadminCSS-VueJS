@@ -7,12 +7,17 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
+        'tenant' => tenant(),
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('base_home');
+
+Route::get('/another', fn () => 'another web')->name('teste');
+
+Route::get('/homepage', fn () => redirect()->route('base_home'))->name('home');
 
 Route::get('/tailadmin/{path}', function (string $path) {
     $path = trim(substr($path, 0, str_ends_with($path, '-view') ? -5 : null), '/\\');
