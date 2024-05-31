@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 import UserOne from '@/assets/images/user/user-01.png'
 import UserTwo from '@/assets/images/user/user-02.png'
@@ -68,7 +68,7 @@ const chatData = ref([
 
     <div>
       <template v-for="(chat, index) in chatData" :key="index">
-        <RouterLink
+        <Link
           href="/"
           class="flex items-center gap-5 py-3 px-7.5 hover:bg-gray-3 dark:hover:bg-meta-4"
         >
@@ -95,7 +95,7 @@ const chatData = ref([
               <span class="text-sm font-medium text-white"> {{ chat.textCount }}</span>
             </div>
           </div>
-        </RouterLink>
+        </Link>
       </template>
     </div>
   </div>
