@@ -18,7 +18,10 @@ const vueConfig = {
 export default defineConfig({
     plugins: [
         laravel({
-            input: 'resources/js/app.js',
+            input: [
+                'resources/js/app.js',
+                'resources/js/mini-games/square-man/app.js',
+            ],
             refresh: true,
         }),
         vue(vueConfig),

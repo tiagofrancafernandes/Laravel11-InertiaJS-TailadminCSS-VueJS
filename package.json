@@ -43,5 +43,8 @@
         "vue-router": "^4.2.5",
         "vue-tsc": "^1.8.25",
         "vue3-apexcharts": "^1.4.4"
+    },
+    "dependencies": {
+        "alpinejs": "^3.14.0"
     }
 }
